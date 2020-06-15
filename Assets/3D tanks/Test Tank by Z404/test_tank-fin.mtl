@@ -1,0 +1,138 @@
+# Blender MTL File: 'test_tank-fin.blend'
+# Material Count: 11
+
+newmtl Material.001
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.069568 0.069568 0.069568
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd all new textures tank/other/test_tank-fin_dulo_BaseColor.jpg
+map_Ns all new textures tank/other/test_tank-fin_dulo_Roughness.jpg
+refl all new textures tank/other/test_tank-fin_dulo_Metallic.jpg
+
+newmtl Material.002
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.322727 0.322727 0.322727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump all new textures tank/body + tower + gun/test_tank-fin_gun_Normal.jpg
+map_Kd all new textures tank/body + tower + gun/test_tank-fin_gun_BaseColor.jpg
+map_Ns all new textures tank/body + tower + gun/test_tank-fin_gun_Roughness.jpg
+refl all new textures tank/body + tower + gun/test_tank-fin_gun_Metallic.jpg
+
+newmtl Material.004
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump all new textures tank/body + tower + gun/test_tank-fin_Body_Normal.jpg
+map_Kd all new textures tank/body + tower + gun/test_tank-fin_Body_BaseColor.jpg
+map_Ke all new textures tank/body + tower + gun/test_tank-fin_Body_Emissive.jpg
+map_Ns all new textures tank/body + tower + gun/test_tank-fin_Body_Roughness.jpg
+refl all new textures tank/body + tower + gun/test_tank-fin_Body_Metallic.jpg
+
+newmtl Material.005
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.069568 0.069568 0.069568
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Material.006
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd all new textures tank/other/test_tank-fin_fleshligh I_BaseColor.jpg
+map_Ns all new textures tank/other/test_tank-fin_fleshligh I_Roughness.jpg
+refl all new textures tank/other/test_tank-fin_fleshligh I_Metallic.jpg
+
+newmtl Material.007
+Ns 309.440090
+Ka 0.709091 0.709091 0.709091
+Kd 0.326376 0.326376 0.326376
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Ke all new textures tank/other/test_tank-fin_fleshlight II_Emissive.jpg
+map_Ns all new textures tank/other/test_tank-fin_fleshlight II_Roughness.jpg
+
+newmtl Material.010
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.477273 0.477273 0.477273
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump all new textures tank/body + tower + gun/test_tank-fin_tower_Normal.jpg
+map_Kd all new textures tank/body + tower + gun/test_tank-fin_tower_BaseColor.jpg
+map_Ns all new textures tank/body + tower + gun/test_tank-fin_tower_Roughness.jpg
+refl all new textures tank/body + tower + gun/test_tank-fin_tower_Metallic.jpg
+
+newmtl None
+Ns 500
+Ka 0.8 0.8 0.8
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+newmtl wheel
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd all new textures tank/wheels/test_tank-fin_wheel_BaseColor.jpg
+map_Ns all new textures tank/wheels/test_tank-fin_wheel_Roughness.jpg
+refl all new textures tank/wheels/test_tank-fin_wheel_Metallic.jpg
+
+newmtl wheel.02
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd all new textures tank/wheels/test_tank-fin_wheel.02_BaseColor.jpg
+
+newmtl wheel.03
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd all new textures tank/wheels/test_tank-fin_wheel.03_BaseColor.jpg
+map_Ns all new textures tank/wheels/test_tank-fin_wheel.03_Roughness.jpg
+refl all new textures tank/wheels/test_tank-fin_wheel.03_Metallic.jpg

@@ -1,0 +1,83 @@
+# Blender MTL File: 'test_tank-fin.blend'
+# Material Count: 7
+
+newmtl Material.002
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.322727 0.322727 0.322727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /home/rman/Документы/blender все работы/gun_nm_test tank_01.png
+map_Kd /home/rman/Документы/blender все работы/gun_color.png
+map_Ns /home/rman/Документы/blender все работы/tower_met_rugh.psd
+refl /home/rman/Документы/blender все работы/gun_metall.png
+
+newmtl Material.004
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /home/rman/Документы/blender все работы/test_tank_body.png
+map_Kd /home/rman/Документы/blender все работы/body_base color.png
+map_Ns /home/rman/Документы/blender все работы/tower_rugh.png
+refl /home/rman/Документы/blender все работы/tower_met_rugh.png
+
+newmtl Material.005
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.069568 0.069568 0.069568
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump /home/rman/Документы/blender все работы/трак.png
+
+newmtl Material.006
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Material.007
+Ns 309.440090
+Ka 0.709091 0.709091 0.709091
+Kd 0.326376 0.326376 0.326376
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl Material.010
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.477273 0.477273 0.477273
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /home/rman/Документы/blender все работы/normal map_test tank.png
+map_Kd /home/rman/Документы/blender все работы/tower_col.png
+map_Ns /home/rman/Документы/blender все работы/tower_rougness.png
+refl /home/rman/Документы/blender все работы/tower_metall.png
+
+newmtl None
+Ns 500
+Ka 0.8 0.8 0.8
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
