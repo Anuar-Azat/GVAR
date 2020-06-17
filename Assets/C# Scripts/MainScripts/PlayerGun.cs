@@ -12,6 +12,8 @@ public class PlayerGun : MonoBehaviour
 
     //Позиция прицела орудия в пространстве
     Vector3 gun_targetPosition;
+
+    public float sizeAim = 40f;
     //сглаживание(скорость) вращения орудия
     public float speedRotateGun = 0.3f;
     //ограничение поворота орудия
@@ -59,7 +61,7 @@ public class PlayerGun : MonoBehaviour
         //Инвертируем координату Y
         screenPos.y = Screen.height - screenPos.y;
         //Сохраняем кординаты отрисовки прицела в переменную
-        gun_aim_position = new Rect(screenPos.x - (gun_aim.width / 2), screenPos.y - (gun_aim.height / 2), gun_aim.width, gun_aim.height);
+        gun_aim_position = new Rect(screenPos.x - (gun_aim.width * sizeAim / 100 / 2), screenPos.y - (gun_aim.height * sizeAim / 100 / 2), gun_aim.width * sizeAim / 100, gun_aim.height * sizeAim / 100);
     }
 
     void OnGUI()

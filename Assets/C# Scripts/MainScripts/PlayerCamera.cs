@@ -16,13 +16,17 @@ public class PlayerCamera : MonoBehaviour
 
     float rotationY = 0f;
     float rotationX = 0f;
-    //ограничния поворота камеры по осям
+    [Header("Размер главного прицела")]
+    public float sizeAim = 100f; // проценты от исходного изображения
+    private float sizeAimX;
+    private float sizeAimY;
+    [Header("Ограничния поворота камеры по осям")]
     public float minimumY = -20f;
     public float maximumY = 20f;
-    //ограничение скрола для камеры
+    [Header("Ограничния скролла камеры")]
     public float minimumZ = -15f;
     public float maximumZ = 0f;
-    //позиция камеры 
+    [Header("Позиция камеры")]
     public float cameraPositionZ = -15f;
     //растояние от камеры до точки прицела
     public float distanceToHitCamera = 25f;
@@ -47,18 +51,25 @@ public class PlayerCamera : MonoBehaviour
     RaycastHit hitCollision;
     Ray rayCollision;
     //---------------------------------------------------------
-   // [Header("Скорость следования за танком")]
-   // private float intens;
-   // [SerializeField]
-   // private float intensDefault = 0.15f;
-   // [SerializeField]
-   // private float intensMin = 0.02f;
-   // [Header("Скорость следования за вращением башни")]
-   // public float speed = 0.13f;
-   // void Start()
-   // {
-   //     transform.parent = null;
-   //}
+    // [Header("Скорость следования за танком")]
+    // private float intens;
+    // [SerializeField]
+    // private float intensDefault = 0.15f;
+    // [SerializeField]
+    // private float intensMin = 0.02f;
+    // [Header("Скорость следования за вращением башни")]
+    // public float speed = 0.13f;
+    // void Start()
+    // {
+    //     transform.parent = null;
+    //}
+
+    void Start()
+    {
+        sizeAimX = camera_aim.width * sizeAim / 100;
+        sizeAimY = camera_aim.height * sizeAim / 100;
+    }
+
     void Update()
     {
       
@@ -108,13 +119,14 @@ public class PlayerCamera : MonoBehaviour
             //Инвертируем координату Y
             screenPos.y = Screen.height - screenPos.y;
             //Сохраняем кординаты отрисовки прицела в переменную
-            camera_aim_position = new Rect(screenPos.x - (camera_aim.width / 2), screenPos.y - (camera_aim.height / 2), camera_aim.width, camera_aim.height);
+
+            camera_aim_position = new Rect(Screen.width / 2 - sizeAimX / 2, Screen.height / 2 - sizeAimY / 2, sizeAimX, sizeAimY);
         //----
 
-      //  transform.position = Vector3.Lerp(transform.position, tank_transform.position, intens);
-      //  Vector3 relativePos = Rotate.position - transform.position;
-      //  Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-      //  transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed);
+        //  transform.position = Vector3.Lerp(transform.position, tank_transform.position, intens);
+        //  Vector3 relativePos = Rotate.position - transform.position;
+        //  Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        //  transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed);
     }
 
     void OnGUI()
