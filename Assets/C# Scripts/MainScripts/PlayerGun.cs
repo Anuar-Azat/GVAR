@@ -3,70 +3,90 @@ using System.Collections;
 
 public class PlayerGun : MonoBehaviour
 {
-    //обьект камера. Добавляется в инспекторе. Камера и башня дочерние к танку
-    public Transform camera_transform;
-    //текстура прицела орудия
-    public Texture2D gun_aim;
-    //позиция отривки текстуры прицела камеры
-    Rect gun_aim_position;
+    /// <summary>
+    /// "PlayerGun" Добавляется на орудие
+    /// </summary>
 
-    //Позиция прицела орудия в пространстве
-    Vector3 gun_targetPosition;
+    public Transform cam;
+    public Transform gunAim;
+    public Texture2D textureAim;
+    [Header("Скрипт основной камеры")]
+    public PlayerCamera playerCamera;
 
-    public float sizeAim = 40f;
-    //сглаживание(скорость) вращения орудия
+    
+    [Header("Прицел")]
+    public float sizeAim = 40f; // В процентах от исходной текстуры
     public float speedRotateGun = 0.3f;
-    //ограничение поворота орудия
     public float maximumAngleGun = 10f;
-    //ограничение поворота орудия
     public float minimumAngleGun = 5f;
-    //Расстояние от орудия до прицела
-    public float distanceToHitGun;
-    //вектор, куда нужно вращать орудие
-    Quaternion directionGun;
-    //значение оси x орудия, используется для проверки ограничений вращения
+
+    float maxDistanceToHitGun;
+
+    Rect aimPosition;
     float tempAngleGunX;
 
-    void Update()
+    void Start()
     {
-        //сохраняем в переменную вектор, куда нужно повернуть орудие
-        directionGun = Quaternion.LookRotation(camera_transform.GetComponent<PlayerCamera>().camera_targetPosition - transform.position);
-        //вращаем орудие в сторону нужного вектора с определ. скоростью
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, directionGun, speedRotateGun);
-        //сохраняем текущий Х во временную переменную
-        tempAngleGunX = transform.localEulerAngles.x;
-        //
-        if (transform.localEulerAngles.x > 180f)
-        {//если значение Х больше 180, то используем ограничение между 360 и максимальним ограничением
-            tempAngleGunX = Mathf.Clamp(tempAngleGunX, 360f - maximumAngleGun, 360f);
-        }
-        else
-            if (transform.localEulerAngles.x < 180f)
-            {//если значение Х меньше 180, то ограничение используем между 0 и минимальным ограничением 
-                tempAngleGunX = Mathf.Clamp(tempAngleGunX, 0f, minimumAngleGun);
-            }
-        //присваиваем орудию новое значение Х
-        transform.localEulerAngles = new Vector3(tempAngleGunX, 0, 0);
+        maxDistanceToHitGun = playerCamera.maxDistanceToHitGun * 15;
+    }
 
-        //сохраняем в переменную расстояние до прицела орудия
-        distanceToHitGun = (Vector3.Distance(camera_transform.GetComponent<PlayerCamera>().camera_targetPosition, transform.position));
-        //сохраняем в переменную позицию прицела орудия
-        gun_targetPosition = transform.TransformPoint(Vector3.forward * distanceToHitGun);
+    void FixedUpdate()
+    {
+        BarrelMove();
+        aimPosition = FindGunAimPosition();
 
-        Debug.DrawLine(transform.position, transform.TransformPoint(Vector3.forward * distanceToHitGun), Color.green);
-
-        ///////находим позицию прицела орудия////////////////////
-        //Переводим трехмерные координаты точки прицела камеры в координаты экрана
-        Vector3 screenPos = camera_transform.GetComponent<Camera>().WorldToScreenPoint(gun_targetPosition);
-        //Инвертируем координату Y
-        screenPos.y = Screen.height - screenPos.y;
-        //Сохраняем кординаты отрисовки прицела в переменную
-        gun_aim_position = new Rect(screenPos.x - (gun_aim.width * sizeAim / 100 / 2), screenPos.y - (gun_aim.height * sizeAim / 100 / 2), gun_aim.width * sizeAim / 100, gun_aim.height * sizeAim / 100);
     }
 
     void OnGUI()
     {
-        //рисуем прицелы камеры и орудия
-        GUI.DrawTexture(gun_aim_position, gun_aim);
+        GUI.DrawTexture(aimPosition, textureAim);
+    }
+
+    Rect FindGunAimPosition()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(gunAim.transform.position, gunAim.transform.forward);
+
+        Vector3 currentGunTarget;
+        float distanceToHit = 0;
+        if (Physics.Raycast(ray, out hit, maxDistanceToHitGun))
+        {
+            currentGunTarget = hit.point;
+        }
+        else
+        {
+            distanceToHit = Vector3.Distance(gunAim.transform.position, gunAim.transform.forward * maxDistanceToHitGun);
+            currentGunTarget = gunAim.transform.TransformPoint(Vector3.forward * distanceToHit);
+
+        }
+        Debug.DrawLine(ray.origin, currentGunTarget, Color.blue);
+
+        Vector3 screenPos = cam.GetComponent<Camera>().WorldToScreenPoint(currentGunTarget);
+        screenPos.y = Screen.height - screenPos.y;
+
+        // Из центра вычитаем половину ширины/высоты текстуры прицела
+        float posAimX = screenPos.x - (textureAim.width * sizeAim / 100 / 2);
+        float posAimY = screenPos.y - (textureAim.height * sizeAim / 100 / 2);
+        float sizeAimX = textureAim.width * sizeAim / 100;
+        float sizeAimY = textureAim.height * sizeAim / 100;
+
+        return (new Rect(posAimX, posAimY, sizeAimX, sizeAimY));
+    }
+
+    void BarrelMove()
+    {
+        Vector3 target = playerCamera.GetAimPoint();
+        Quaternion directionGun = Quaternion.LookRotation(target - gunAim.position);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, directionGun, speedRotateGun);
+
+        tempAngleGunX = transform.localEulerAngles.x;
+        if (transform.localEulerAngles.x > 180f)
+        {
+            tempAngleGunX = Mathf.Clamp(tempAngleGunX, 360f - maximumAngleGun, 360f);
+        } else 
+        {
+            tempAngleGunX = Mathf.Clamp(tempAngleGunX, 0f, minimumAngleGun);
+        }
+        transform.localEulerAngles = new Vector3(tempAngleGunX, 0, 0);
     }
 }

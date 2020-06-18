@@ -11,7 +11,7 @@ public class PlayerCamera : MonoBehaviour
     public Transform turret_transform;
     //текстура прицела камеры
     public Texture2D camera_aim;
-    //позиция отривки текстуры прицела камеры
+    public float maxDistanceToHitGun = 100f;
     Rect camera_aim_position;
 
     float rotationY = 0f;
@@ -28,19 +28,12 @@ public class PlayerCamera : MonoBehaviour
     public float maximumZ = 0f;
     [Header("Позиция камеры")]
     public float cameraPositionZ = -15f;
-    //растояние от камеры до точки прицела
     public float distanceToHitCamera = 25f;
-    //сглаживание(скорость) вращения камеры
     public float speedRotateCamera = 5f;
-    //сглаживание(скорость) приближения и отдаления камеры
     public float speedScrollCamera = 0.02f;
-    //Храним местоположение камеры относительно танка
     Vector3 newCamToTank;
-    //Храним расстояние от танка до камеры
     Vector3 newDistance;
-    //Храним значения поворота (для удобства) 
     Quaternion newRotation;
-    //Храним позицию (для удобства)
     Vector3 newPosition;
     
     //Позиция прицела камеры в пространстве
@@ -109,30 +102,44 @@ public class PlayerCamera : MonoBehaviour
             transform.localRotation = newRotation;
             transform.localPosition = newPosition;
             //Сохраняем позицию прицела камеры в переменную
-            camera_targetPosition = transform.TransformPoint(Vector3.forward * distanceToHitCamera);
-
-            Debug.DrawLine(transform.position, transform.TransformPoint(Vector3.forward * distanceToHitCamera));
 
             ////////находим позицию прицела камеры
             //Переводим трехмерные координаты точки прицела камеры в координаты экрана
-            Vector3 screenPos = GetComponent<Camera>().WorldToScreenPoint(camera_targetPosition);
+            Vector3 screenPos = GetAimPoint();
             //Инвертируем координату Y
             screenPos.y = Screen.height - screenPos.y;
             //Сохраняем кординаты отрисовки прицела в переменную
 
             camera_aim_position = new Rect(Screen.width / 2 - sizeAimX / 2, Screen.height / 2 - sizeAimY / 2, sizeAimX, sizeAimY);
-        //----
-
-        //  transform.position = Vector3.Lerp(transform.position, tank_transform.position, intens);
-        //  Vector3 relativePos = Rotate.position - transform.position;
-        //  Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        //  transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed);
     }
 
     void OnGUI()
     {
-        //рисуем прицелы камеры и орудия
         GUI.DrawTexture(camera_aim_position, camera_aim);
     }
 
+    public Vector3 GetAimPoint()
+        /// <summary>
+        /// Функция поиска точки экранного прицела
+        /// </summary>
+        /// <returns>Vector3 точки в пространстве</returns>
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        float distanceToHit = 0f;
+        Vector3 currentCamTarget;
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistanceToHitGun))
+        {
+            currentCamTarget = hit.point;
+        }
+        else
+        {
+            distanceToHit = Vector3.Distance(transform.position, transform.forward * maxDistanceToHitGun);
+            currentCamTarget = transform.TransformPoint(Vector3.forward * distanceToHit);
+            //print(distanceToHit);
+        }
+        
+        Debug.DrawLine(ray.origin, currentCamTarget, Color.red);
+
+        return currentCamTarget;
+    }
 }
