@@ -8981,7 +8981,7 @@ GameObject:
   m_Layer: 0
   m_Name: Aim
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10242,6 +10242,7 @@ MonoBehaviour:
   tank_transform: {fileID: 564563135}
   turret_transform: {fileID: 4027353846040731449}
   camera_aim: {fileID: 2800000, guid: a69d72cf48c127245ba2c1608cd241c7, type: 3}
+  maxDistanceToHitGun: 100
   sizeAim: 6
   minimumY: -10
   maximumY: 30
@@ -37953,13 +37954,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391a96c7b8a247046af40df75df2f75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera_transform: {fileID: 1570061089}
-  gun_aim: {fileID: 2800000, guid: 8a6fd293fd58db74392b1c7b7676b55b, type: 3}
+  cam: {fileID: 1570061089}
+  gunAim: {fileID: 1386072168}
+  textureAim: {fileID: 2800000, guid: 8a6fd293fd58db74392b1c7b7676b55b, type: 3}
+  playerCamera: {fileID: 1570061091}
   sizeAim: 40
-  speedRotateGun: 0.3
+  speedRotateGun: 5
   maximumAngleGun: 20
   minimumAngleGun: 8
-  distanceToHitGun: 0
+  maxDistanceToHitGun: 100
 --- !u!23 &4880507875698611394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48076,12 +48079,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f628e807685ca74889354e26d9e0c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera_transform: {fileID: 1570061089}
-  tank_transform: {fileID: 2885914095075996717}
-  speedRotateTurret: 1
+  cam: {fileID: 1570061089}
+  tank: {fileID: 2885914095075996717}
+  speedRotateTurret: 10
   rangeAngleTurret: 180
-  distanceToHitTurret: 0
   GunDamage: 100
+  playerCamera: {fileID: 1570061091}
 --- !u!65 &6735827144700336735
 BoxCollider:
   m_ObjectHideFlags: 0
