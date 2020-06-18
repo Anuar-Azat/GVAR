@@ -20,15 +20,14 @@ public class PlayerGun : MonoBehaviour
     public float maximumAngleGun = 10f;
     public float minimumAngleGun = 5f;
 
-    [Header("Макс. расстояние до удара")]
-    public float maxDistanceToHitGun = 100f;
+    float maxDistanceToHitGun;
 
     Rect aimPosition;
     float tempAngleGunX;
 
     void Start()
     {
-        maxDistanceToHitGun = playerCamera.maxDistanceToHitGun;
+        maxDistanceToHitGun = playerCamera.maxDistanceToHitGun * 15;
     }
 
     void FixedUpdate()

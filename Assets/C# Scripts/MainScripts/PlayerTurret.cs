@@ -7,9 +7,7 @@ public class PlayerTurret : MonoBehaviour
     public Transform cam;
     public Transform tank;
     [Header("Параметры башни")]
-    public float speedRotateTurret = 10f;
-    public float rangeAngleTurret = 45;
-    Quaternion directionTurret;
+    public float speedRotateTurret = 15f;
     public float GunDamage;
     public PlayerCamera playerCamera;
 

@@ -102,13 +102,10 @@ public class PlayerCamera : MonoBehaviour
             transform.localRotation = newRotation;
             transform.localPosition = newPosition;
             //Сохраняем позицию прицела камеры в переменную
-            camera_targetPosition = transform.TransformPoint(Vector3.forward * distanceToHitCamera);
-
-            Debug.DrawLine(transform.position, transform.TransformPoint(Vector3.forward * distanceToHitCamera), Color.red);
 
             ////////находим позицию прицела камеры
             //Переводим трехмерные координаты точки прицела камеры в координаты экрана
-            Vector3 screenPos = GetComponent<Camera>().WorldToScreenPoint(camera_targetPosition);
+            Vector3 screenPos = GetAimPoint();
             //Инвертируем координату Y
             screenPos.y = Screen.height - screenPos.y;
             //Сохраняем кординаты отрисовки прицела в переменную
@@ -127,18 +124,20 @@ public class PlayerCamera : MonoBehaviour
         /// </summary>
         /// <returns>Vector3 точки в пространстве</returns>
     {
-        RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
-
+        float distanceToHit = 0f;
         Vector3 currentCamTarget;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistanceToHitGun))
         {
             currentCamTarget = hit.point;
         }
         else
         {
-            currentCamTarget = transform.TransformPoint(Vector3.forward * maxDistanceToHitGun);
+            distanceToHit = Vector3.Distance(transform.position, transform.forward * maxDistanceToHitGun);
+            currentCamTarget = transform.TransformPoint(Vector3.forward * distanceToHit);
+            //print(distanceToHit);
         }
+        
         Debug.DrawLine(ray.origin, currentCamTarget, Color.red);
 
         return currentCamTarget;
