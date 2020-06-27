@@ -5,27 +5,46 @@ public class CameraPosition : MonoBehaviour
 {
     public Transform Rotate;
     public Transform Target;
-    [Header("Скорость следования за танком")]
-    private float intens;
-    [SerializeField]
-    private float intensDefault = 0.15f;
-    [SerializeField]
-    private float intensMin = 0.02f;
-    [Header("Скорость следования за вращением башни")]
-    public float speed = 0.13f;
+    public float speedRotateCamera = 5f;
+
     void Start()
     {
         transform.parent = null;
-        intens = intensDefault;
     }
 
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, Target.position, intens);
-
-        Vector3 relativePos = Rotate.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed);
+        transform.position = Vector3.Lerp(transform.position, Target.position, 1);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Target.rotation, speedRotateCamera);
     }
 
+    void OnGUI()
+    {
+        //GUI.DrawTexture(camera_aim_position, camera_aim);
+    }
+
+    public Vector3 GetAimPoint()
+    /// <summary>
+    /// Функция поиска точки экранного прицела
+    /// </summary>
+    /// <returns>Vector3 точки в пространстве</returns>
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        float distanceToHit = 0f;
+        Vector3 currentCamTarget;
+        if (Physics.Raycast(ray, out RaycastHit hit, 100))
+        {
+            currentCamTarget = hit.point;
+        }
+        else
+        {
+            distanceToHit = Vector3.Distance(transform.position, transform.forward * 100);
+            currentCamTarget = transform.TransformPoint(Vector3.forward * distanceToHit);
+            //print(distanceToHit);
+        }
+
+        Debug.DrawLine(ray.origin, currentCamTarget, Color.red);
+
+        return currentCamTarget;
+    }
 }

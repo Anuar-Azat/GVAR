@@ -27,7 +27,7 @@ public class PlayerGun : MonoBehaviour
 
     void Start()
     {
-        maxDistanceToHitGun = playerCamera.maxDistanceToHitGun * 15;
+        //maxDistanceToHitGun = playerCamera.maxDistanceToHitGun * 15;
     }
 
     void FixedUpdate()
@@ -75,6 +75,7 @@ public class PlayerGun : MonoBehaviour
 
     void BarrelMove()
     {
+        /*
         Vector3 target = playerCamera.GetAimPoint();
         Quaternion directionGun = Quaternion.LookRotation(target - gunAim.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, directionGun, speedRotateGun);
@@ -88,5 +89,6 @@ public class PlayerGun : MonoBehaviour
             tempAngleGunX = Mathf.Clamp(tempAngleGunX, 0f, minimumAngleGun);
         }
         transform.localEulerAngles = new Vector3(tempAngleGunX, 0, 0);
+        */
     }
 }

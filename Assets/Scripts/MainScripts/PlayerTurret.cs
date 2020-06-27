@@ -18,10 +18,12 @@ public class PlayerTurret : MonoBehaviour
 
     void TurretMove()
     {
+        /*
         Vector3 target = playerCamera.GetAimPoint();
         Quaternion directionGun = Quaternion.LookRotation(target - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, directionGun, speedRotateTurret * Time.deltaTime);
         float tempAngleTowerY = transform.localEulerAngles.y;
         transform.localEulerAngles = new Vector3(0, tempAngleTowerY, 0);
+        */
     }
 }
