@@ -25,39 +25,32 @@ public class PlayerGun : MonoBehaviour
     Rect aimPosition;
     float tempAngleGunX;
 
-    void Start()
-    {
-        //maxDistanceToHitGun = playerCamera.maxDistanceToHitGun * 15;
-    }
-
     void FixedUpdate()
     {
         BarrelMove();
-        aimPosition = FindGunAimPosition();
-
     }
 
     void OnGUI()
     {
+        aimPosition = FindGunAimPosition();
         GUI.DrawTexture(aimPosition, textureAim);
     }
 
     Rect FindGunAimPosition()
     {
+        Vector3 target = playerCamera.GetAimPoint();
         RaycastHit hit;
         Ray ray = new Ray(gunAim.transform.position, gunAim.transform.forward);
 
+        float distToAim = Vector3.Distance(target, gunAim.transform.position);
         Vector3 currentGunTarget;
-        float distanceToHit = 0;
-        if (Physics.Raycast(ray, out hit, maxDistanceToHitGun))
+        if (Physics.Raycast(ray, out hit, 100))
         {
             currentGunTarget = hit.point;
         }
         else
         {
-            distanceToHit = Vector3.Distance(gunAim.transform.position, gunAim.transform.forward * maxDistanceToHitGun);
-            currentGunTarget = gunAim.transform.TransformPoint(Vector3.forward * distanceToHit);
-
+            currentGunTarget = gunAim.transform.TransformPoint(Vector3.forward * 100);
         }
         Debug.DrawLine(ray.origin, currentGunTarget, Color.blue);
 

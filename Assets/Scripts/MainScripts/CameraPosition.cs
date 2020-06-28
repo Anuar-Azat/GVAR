@@ -32,7 +32,7 @@ public class CameraPosition : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         float distanceToHit = 0f;
         Vector3 currentCamTarget;
-        if (Physics.Raycast(ray, out RaycastHit hit, 100))
+        if (Physics.Raycast(ray, out RaycastHit hit, 500))
         {
             currentCamTarget = hit.point;
         }
