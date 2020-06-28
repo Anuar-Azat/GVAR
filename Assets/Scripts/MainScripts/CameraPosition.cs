@@ -38,8 +38,7 @@ public class CameraPosition : MonoBehaviour
         }
         else
         {
-            distanceToHit = Vector3.Distance(transform.position, transform.forward * 100);
-            currentCamTarget = transform.TransformPoint(Vector3.forward * distanceToHit);
+            currentCamTarget = transform.TransformPoint(Vector3.forward * 100);
             //print(distanceToHit);
         }
 

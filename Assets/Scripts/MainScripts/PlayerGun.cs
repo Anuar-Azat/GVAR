@@ -11,11 +11,11 @@ public class PlayerGun : MonoBehaviour
     public Transform gunAim;
     public Texture2D textureAim;
     [Header("Скрипт основной камеры")]
-    public PlayerCamera playerCamera;
+    public CameraPosition playerCamera;
 
     
     [Header("Прицел")]
-    public float sizeAim = 40f; // В процентах от исходной текстуры
+    public float sizeAim = 30f; // В процентах от исходной текстуры
     public float speedRotateGun = 0.3f;
     public float maximumAngleGun = 10f;
     public float minimumAngleGun = 5f;
@@ -75,7 +75,7 @@ public class PlayerGun : MonoBehaviour
 
     void BarrelMove()
     {
-        /*
+        
         Vector3 target = playerCamera.GetAimPoint();
         Quaternion directionGun = Quaternion.LookRotation(target - gunAim.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, directionGun, speedRotateGun);
@@ -89,6 +89,6 @@ public class PlayerGun : MonoBehaviour
             tempAngleGunX = Mathf.Clamp(tempAngleGunX, 0f, minimumAngleGun);
         }
         transform.localEulerAngles = new Vector3(tempAngleGunX, 0, 0);
-        */
+        
     }
 }

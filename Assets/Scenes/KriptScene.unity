@@ -393,7 +393,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8e4a2029906544044b187c69280acad2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -431,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 1540149512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.301224, y: 0, z: 2.7710853}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -454,11 +454,12 @@ MonoBehaviour:
   maxAngle: 0
   speedCameraTarget: 0
   speedRotateCamera: 5
+  speedScroll: 5
   maxHight: -28
   minHight: -11
   correction: 0
   minimumY: -20
-  maximumY: 10
+  maximumY: 50
 --- !u!1 &51379578643583931
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +865,7 @@ GameObject:
   - component: {fileID: 1111594752125153468}
   - component: {fileID: 1111594752125153474}
   m_Layer: 0
-  m_Name: Player_Tank
+  m_Name: "\u0422\u0435\u0441\u0442\u043E\u0432\u044B\u0439 \u0442\u0430\u043D\u043A"
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3675,9 +3676,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 748501934}
   tank: {fileID: 4122610402042135248}
-  speedRotateTurret: 10
+  speedRotateTurret: 50
   GunDamage: 100
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 748501935}
 --- !u!1 &5518302969098416618
 GameObject:
   m_ObjectHideFlags: 0
@@ -3749,9 +3750,9 @@ MonoBehaviour:
   cam: {fileID: 748501934}
   gunAim: {fileID: 1241489113637240469}
   textureAim: {fileID: 2800000, guid: 8a6fd293fd58db74392b1c7b7676b55b, type: 3}
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 748501935}
   sizeAim: 40
-  speedRotateGun: 5
+  speedRotateGun: 1
   maximumAngleGun: 20
   minimumAngleGun: 8
 --- !u!1 &5949067356969433995
