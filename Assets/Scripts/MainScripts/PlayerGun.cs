@@ -32,11 +32,11 @@ public class PlayerGun : MonoBehaviour
 
     void OnGUI()
     {
-        aimPosition = FindGunAimPosition();
+        aimPosition = FindGunAimPositionOnScreen();
         GUI.DrawTexture(aimPosition, textureAim);
     }
 
-    Rect FindGunAimPosition()
+    public Rect FindGunAimPositionOnScreen()
     {
         Vector3 target = playerCamera.GetAimPoint();
         RaycastHit hit;

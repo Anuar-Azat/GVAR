@@ -30,7 +30,6 @@ public class CameraPosition : MonoBehaviour
     /// <returns>Vector3 точки в пространстве</returns>
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        float distanceToHit = 0f;
         Vector3 currentCamTarget;
         if (Physics.Raycast(ray, out RaycastHit hit, 500))
         {
