@@ -6,6 +6,12 @@ public class CameraPosition : MonoBehaviour
     public Transform Rotate;
     public Transform Target;
     public float speedRotateCamera = 5f;
+    public float cameraPositionZ = -10f;
+    public float minDistanceZ = -20f;
+    public float maxDistanceZ = 50f;
+    public float speedScroll = 30f;
+
+
 
     void Start()
     {
@@ -14,13 +20,12 @@ public class CameraPosition : MonoBehaviour
 
     void FixedUpdate()
     {
+        cameraPositionZ = Mathf.Clamp(cameraPositionZ + Input.GetAxis("Mouse ScrollWheel") * speedScroll, minDistanceZ, maxDistanceZ);
+        print(cameraPositionZ);
+        Target.transform.localPosition += new Vector3 (0, 0, Input.GetAxis("Mouse ScrollWheel") * speedScroll);
+
         transform.position = Vector3.Lerp(transform.position, Target.position, 1);
         transform.rotation = Quaternion.Lerp(transform.rotation, Target.rotation, speedRotateCamera);
-    }
-
-    void OnGUI()
-    {
-        //GUI.DrawTexture(camera_aim_position, camera_aim);
     }
 
     public Vector3 GetAimPoint()
